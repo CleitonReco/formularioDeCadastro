@@ -14,15 +14,15 @@
     <title>Criando conta</title>
   </head>
   <body>
-    <main id="from_container">
-      <div id="from_header">
-        <h1 id="from_title">Criar minha conta</h1>
+    <main id="form_container">
+      <div id="form_header">
+        <h1 id="form_title">Criar conta</h1>
         <button class="btn-default">
           <i class="fa-solid fa-right-to-bracket"></i>
         </button>
       </div>
       <form action="" id="form">
-        <div id="divinput_container">
+        <div id="input_container">
           <div class="input-box">
             <label for="name" class="form-label"> Primeiro nome </label>
             <div class="input-field">
@@ -79,7 +79,7 @@
             </div>
           </div>
 
-              <div class="input-box">
+          <div class="input-box">
             <label for="password" class="form-label"> Senha </label>
             <div class="input-field">
               <input
@@ -93,75 +93,67 @@
             </div>
           </div>
 
-              <div class="input-box">
-            <label for="confirm_password" class="form-label"> Confirmar senha </label>
+          <div class="input-box">
+            <label for="confirm_password" class="form-label">
+              Confirmar senha
+            </label>
             <div class="input-field">
               <input
-                type="date"
+                type="password"
                 name="confirm_password"
                 id="confirm_password"
                 class="form-control"
-                placeholder="exemplo@outlook.com"
+                placeholder="*******"
               />
-              <i class="fa-regular fa-envelope"></i>
+              <i class="fa-regular fa-eye-slash password-icon"></i>
             </div>
           </div>
 
           <div class="radio-container">
-            <label for="" class="form-label">
-                Genero
-            </label>
-            <div id="gender_inputs">
-                <div class="radio-box">
-                    <input 
-                    type="radio"
-                    name="gender"
-                    id="female"
-                    class="form-control"
-                    value="female"
-                    >
-                    <label for="female" class="form-label">Feminino</label>
-                </div>
-            </div>
+            <label class="form-label"> Genero </label>
 
             <div id="gender_inputs">
-                <div class="radio-box">
-                    <input 
-                    type="radio"
-                    name="gender"
-                    id="male"
-                    class="form-control"
-                    value="male"
-                    >
-                    <label for="male" class="form-label">Masculino</label>
-                </div>
+              <div class="radio-box">
+                <input
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  class="form-control"
+                  value="female"
+                />
+                <label for="female" class="form-label"> Feminino </label>
+              </div>
+
+              <div class="radio-box">
+                <input
+                  type="radio"
+                  name="gender"
+                  id="male"
+                  class="form-control"
+                  value="male"
+                />
+                <label or="male" class="form-label"> Masculino </label>
+              </div>
+
+              <div class="radio-box">
+                <input
+                  type="radio"
+                  name="gender"
+                  id="other"
+                  class="form-control"
+                  value="other"
+                />
+                <label for="other" class="form-label"> Não binário </label>
+              </div>
             </div>
-
-             <div id="gender_inputs">
-                <div class="radio-box">
-                    <input 
-                    type="radio"
-                    name="gender"
-                    id="other"
-                    class="form-control"
-                    value="other"
-                    >
-                    <label for="other" class="form-label">Não binario
-
-                    </label>
-                </div>
-            </div>
-
-
           </div>
-
-
         </div>
         <button type="submit" class="btn-default">
-            <i class="fa-solid fa-check"></i>
-            Criar conta
+          <i class="fa-solid fa-check"></i>
+          Criar conta
         </button>
       </form>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>
