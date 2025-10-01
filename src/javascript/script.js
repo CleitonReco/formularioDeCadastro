@@ -5,14 +5,24 @@ form.addEventListener("submit", function (e) {
 
   const fields = [
     {
-      id: 'name',
-      label: 'Nome',
-      validator: nameIsValid
+      id: "name",
+      label: "Nome",
+      validator: nameIsValid,
     },
     {
-      id: 'last_name',
-      label: 'Sobrenome',
-      validator: nameIsValid
+      id: "last_name",
+      label: "Sobrenome",
+      validator: nameIsValid,
+    },
+    {
+      id: "birthdate",
+      label: "Nascimento",
+      validator: dateIsValid,
+    },
+    {
+      id: "email",
+      label: "E-mail",
+      validator: emailIsValid,
     },
   ];
 
@@ -57,13 +67,55 @@ function nameIsValid(value) {
 
   if (value.length < min) {
     validator.isValid = false;
-    validator.errorMenssage = `Deve ter no mínimo ${min} caracteres.`;
+    validator.errorMenssage = `Deve ter no mínimo ${min} caracteres!`;
     return validator;
   }
   const regex = /^[a-zA-Z]/;
   if (!regex.test(value)) {
     validator.isValid = false;
     validator.errorMenssage = "o campo deve ter conter apenas letras!";
+  }
+  return validator;
+}
+
+function dateIsValid(value) {
+  const validator = {
+    isValid: true,
+    errorMenssage: null,
+  };
+
+  if (isEmpty(value)) {
+    validator.isValid = false;
+    validator.errorMenssage = "O nascimento é obrigatório!";
+    return validator;
+  }
+
+  const year = new Date(value).getFullYear();
+
+  if (year < 1920 || year > new Date().getFullYear()) {
+    validator.isValid = false;
+    validator.errorMenssage = "Data inválida!";
+    return validator;
+  }
+  return validator;
+}
+
+function emailIsValid(value) {
+  const validator = {
+    isValid: true,
+    errorMenssage: null,
+  };
+
+  if (isEmpty(value)) {
+    validator.isValid = false;
+    validator.errorMenssage = "O e-mail é obrigatório!";
+    return validator;
+  }
+  const regex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$");
+  if (!regex.test(value)) {
+    validator.isValid = false;
+    validator.errorMenssage = "O e-mail precisa ser válido!";
+    return validator;
   }
   return validator;
 }
