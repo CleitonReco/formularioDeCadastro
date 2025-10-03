@@ -24,6 +24,16 @@ form.addEventListener("submit", function (e) {
       label: "E-mail",
       validator: emailIsValid,
     },
+    {
+      id: "password",
+      label: "Senha",
+      validator: passwordIsSecure,
+    },
+    {
+      id: "confirm_password",
+      label: "Confirmar senha",
+      validator: passwordMatch,
+    },
   ];
 
   const errorIcon = '<i class="fa-solid fa-circle-exclamation"></i>';
@@ -46,6 +56,22 @@ form.addEventListener("submit", function (e) {
       return;
     }
   });
+
+  const genders = document.getElementsByName("gender");
+  const radioContainer = document.querySelector(".radio-container");
+  const genderErrorSpan = radioContainer.querySelector(".error");
+
+  const selectorGender = [...genders].find((input) => input.checked);
+    radioContainer.classList.add("invalid");
+    radioContainer.classList.remove("valid");
+    genderErrorSpan.innerHTML = `${errorIcon} Selecione um gênero!`
+
+  if (selectorGender) {
+    radioContainer.classList.add("valid");
+    radioContainer.classList.remove("invalid");
+    genderErrorSpan.innerHTML = ''
+    return;
+  }
 });
 
 function isEmpty(value) {
@@ -120,6 +146,50 @@ function emailIsValid(value) {
   return validator;
 }
 
+function passwordIsSecure(value) {
+  const validator = {
+    isValid: true,
+    errorMenssage: null,
+  };
+
+  if (isEmpty(value)) {
+    validator.isValid = false;
+    validator.errorMenssage = "A senha é obrigatório!";
+    return validator;
+  }
+  const regex = new RegExp(
+    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+  );
+  if (!regex.test(value)) {
+    validator.isValid = false;
+    validator.errorMenssage = `
+      Sua senha deve conter ao menos: <br/>
+      8 dígitos <br/>
+      1 letra minúscula <br/>
+      1 letra maiúscula  <br/>
+      1 número </br>
+      1 caractere especial!
+    `;
+
+    return validator;
+  }
+  return validator;
+}
+
+function passwordMatch(value) {
+  const validator = {
+    isValid: true,
+    errorMenssage: null,
+  };
+  const passwordValue = document.getElementById("password").value;
+
+  if (value === "" || passwordValue !== value) {
+    (validator.isValid = false),
+      (validator.errorMenssage = "Senhas não condizem!");
+    return validator;
+  }
+  return validator;
+}
 const passwordIcons = document.querySelectorAll(".password-icon");
 
 passwordIcons.forEach((icon) => {

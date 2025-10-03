@@ -163,6 +163,15 @@ input:-webkit-autofill {
     border: 1px solid #22c55e;
 }
 
+.radio-container.invalid .form-label:first-child{
+    color: #dc2626;
+}
+
+.radio-container.valid .form-label:first-child{
+    color: #22c55e;
+}
+
+
 
 @media screen and (max-width: 500px) {
     #form_container {
